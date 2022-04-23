@@ -333,6 +333,7 @@ func (ethash *Ethash) CalcDifficulty(chain consensus.ChainHeaderReader, time uin
 // given the parent block's time and difficulty.
 func CalcDifficulty(config *params.ChainConfig, time uint64, parent *types.Header) *big.Int {
 	next := new(big.Int).Add(parent.Number, big1)
+	return new(big.Int).Add(parent.Difficulty, big1)
 	switch {
 	case config.IsArrowGlacier(next):
 		return calcDifficultyEip4345(time, parent)
